@@ -1,6 +1,6 @@
 # diceko
 
-A new Flutter project.
+Dice ko to
 
 ## Getting Started
 
