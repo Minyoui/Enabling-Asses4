@@ -37,35 +37,48 @@ class _DicePageState extends State<DicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.red,
-      body: SafeArea(
-        child: Center(
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {
-                        getRandomDiceValues();
-                        print('left is clicked');
-                      },
-                      child: Image.asset('images/dice$leftDice.png')),
-                ),
+    return MaterialApp(
+      home: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/background.jpg'),
+          ),
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('EA4: Stateless and Stateful Widget'),
+            backgroundColor: Colors.black45,
+          ),
+          backgroundColor: Colors.red,
+          body: SafeArea(
+            child: Center(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                          onPressed: () {
+                            getRandomDiceValues();
+                            print('left is clicked');
+                          },
+                          child: Image.asset('images/dice$leftDice.png')),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                          onPressed: () {
+                            getRandomDiceValues();
+                            print('right is clicked');
+                          },
+                          child: Image.asset('images/dice$rightDice.png')),
+                    ),
+                  )
+                ],
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(
-                      onPressed: () {
-                        getRandomDiceValues();
-                        print('right is clicked');
-                      },
-                      child: Image.asset('images/dice$rightDice.png')),
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
