@@ -58,7 +58,10 @@ class _DicePageState extends State<DicePage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                      onPressed: getRandomDiceValues,
+                      onPressed: () {
+                        getRandomDiceValues();
+                        print('right is clicked');
+                      },
                       child: Image.asset('images/dice$rightDice.png')),
                 ),
               )
