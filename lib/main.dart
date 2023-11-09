@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,10 +58,13 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
       home: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(isJumpscare
-                ? 'images/8bit-pixel5.gif'
-                : 
-                'images/8bit-pixel4.gif'),
+            image: AssetImage(
+              isJumpscare
+                ? 'images/Chara.gif': 
+              leftGreater
+                ? 'images/Chara3.jpg': 
+                'images/Chara2.jpg', 
+                ),
           ),
         ),
         child: Scaffold(
@@ -120,15 +122,15 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
                   const Padding(padding: EdgeInsets.only(top: 16)),
                   Text(
                     isJumpscare
-                        ? 'YOUR FAITH IS SEALED':
+                        ? 'we are not THE SAME':
                     rightGreater
-                        ? 'Right is bigger, thy life is safer':
+                        ? 'We will be friends, RIGHT?':
                     leftGreater
-                        ? 'Left is bigger, thy doom is nearer':
-                        'Roll the dice and thy choose your faith',
+                        ? 'Did you just LEFT me here?':
+                        'Come play with me!',
                     style: const TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'Who',
+                      fontSize: 20,
+                      fontFamily: 'Determination',
                       color: Color.fromARGB(255, 223, 223, 223),
                     ),
                   ),
