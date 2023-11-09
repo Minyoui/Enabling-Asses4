@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,8 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
   int rotationDuration = 3000; // in miliseconds
 
   bool isJumpscare = false;
+  bool leftGreater = false;
+  bool rightGreater = false;
 
   void getRandomDiceValues() {
     setState(() {
@@ -39,6 +42,8 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
       leftDice = Random().nextInt(6) + 1;
 
       isJumpscare = leftDice == rightDice;
+      rightGreater = rightDice > leftDice;
+      leftGreater = leftDice > rightDice;
     });
   }
 
@@ -56,12 +61,20 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
           image: DecorationImage(
             image: AssetImage(isJumpscare
                 ? 'images/8bit-pixel5.gif'
-                : 'images/8bit-pixel4.gif'),
+                : 
+                'images/8bit-pixel4.gif'),
           ),
         ),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('EA4: Stateless and Stateful Widget'),
+            title: const Text(
+              'EA 4: Stateless and Stateful Widget',
+              style: TextStyle(
+                fontFamily: 'Stranger',
+                color: Color.fromARGB(135, 255, 82, 82),
+                fontSize: 48,
+              ),
+              ),
             backgroundColor: Colors.black45,
           ),
           backgroundColor: Colors.black12,
@@ -74,7 +87,7 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                         child: Padding(
-                            padding: const EdgeInsets.all(50.0),
+                            padding: const EdgeInsets.all(65.0),
                             child: AnimatedRotation(
                               turns: turns,
                               curve: Curves.elasticInOut,
@@ -83,13 +96,13 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
                               onEnd: getRandomDiceValues,
                               child: TextButton(
                                 onPressed: rotateDice,
-                                child: Image.asset('images/dice$leftDice.png'),
+                                child: Image.asset('images/RedDice$leftDice.png'),                               
                               ),
                             )),
                       ),
                       Expanded(
                         child: Padding(
-                            padding: const EdgeInsets.all(50.0),
+                            padding: const EdgeInsets.all(65.0),
                             child: AnimatedRotation(
                               turns: turns,
                               curve: Curves.elasticInOut,
@@ -98,7 +111,7 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
                               onEnd: getRandomDiceValues,
                               child: TextButton(
                                 onPressed: rotateDice,
-                                child: Image.asset('images/dice$rightDice.png'),
+                                child: Image.asset('images/RedDice$rightDice.png'),
                               ),
                             )),
                       ),
@@ -107,11 +120,16 @@ class _DicePageState extends State<DicePage> with TickerProviderStateMixin {
                   const Padding(padding: EdgeInsets.only(top: 16)),
                   Text(
                     isJumpscare
-                        ? 'YOUR FAITH IS SEALED'
-                        : 'Roll the dice and thy choose your faith',
+                        ? 'YOUR FAITH IS SEALED':
+                    rightGreater
+                        ? 'Right is bigger, thy life is safer':
+                    leftGreater
+                        ? 'Left is bigger, thy doom is nearer':
+                        'Roll the dice and thy choose your faith',
                     style: const TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
+                      fontSize: 30,
+                      fontFamily: 'Who',
+                      color: Color.fromARGB(255, 223, 223, 223),
                     ),
                   ),
                 ],
